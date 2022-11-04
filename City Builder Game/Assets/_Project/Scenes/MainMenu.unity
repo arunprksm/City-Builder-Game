@@ -1421,7 +1421,7 @@ Camera:
   far clip plane: 3000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1445,7 +1445,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1226034267}
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -25, y: 28.5, z: -25}
+  m_LocalPosition: {x: -25, y: 33.5, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3009,6 +3009,7 @@ GameObject:
   - component: {fileID: 1959984785}
   - component: {fileID: 1959984784}
   - component: {fileID: 1959984786}
+  - component: {fileID: 1959984787}
   m_Layer: 0
   m_Name: _Manager
   m_TagString: Untagged
@@ -3065,10 +3066,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 6662643602705547698, guid: 0a95446b7d064a04d94a287e09779fc7, type: 3}
-  levelWidth: 20
-  levelLength: 20
+  levelWidth: 30
+  levelLength: 30
   tilesContainer: {fileID: 2077655411}
   tileSize: 1
+  tileEndHeight: 0.8
+  woodPrefab: {fileID: 2808759264779528009, guid: 7875e682a136fce45b204b4b456301ad, type: 3}
+  rockPrefab: {fileID: 1759158762704947588, guid: d870168d0d6098b41a2f7f9bfb4b5556, type: 3}
+  obstacleChance: 0.5
+  xBounds: 3
+  zBounds: 3
+--- !u!114 &1959984787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959984783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6278b547e1b32f945892350613f2025a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxWood: 0
+  maxStone: 0
+  maxPremiumC: 0
+  maxStandardC: 0
+  debugBool: 0
 --- !u!1 &1969029831
 GameObject:
   m_ObjectHideFlags: 0

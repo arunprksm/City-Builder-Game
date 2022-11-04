@@ -12,6 +12,20 @@ public class GameManager : MonoBehaviour
 
     public Transform tilesContainer;
     public float tileSize = 1;
+    public float tileEndHeight = 1;
+
+
+    [Header("Resources")]
+    [Space(8)]
+
+    public GameObject woodPrefab;
+    public GameObject rockPrefab;
+
+    [Range(0, 1)]
+    public float obstacleChance = 0.3f;
+
+    public int xBounds = 3;
+    public int zBounds = 3;
 
     private void Start()
     {
@@ -26,7 +40,27 @@ public class GameManager : MonoBehaviour
         {
             for (int z = 0; z < levelLength; z++)
             {
-                SpawnTile(x * tileSize, z * tileSize);
+                TileObject spawnedTile = SpawnTile(x * tileSize, z * tileSize);
+                if (x < xBounds || z < zBounds || z >= (levelLength - zBounds) || x >= (levelWidth - xBounds))
+                {
+                    // We can spawn an obstacles in there.
+                    spawnedTile.data.StarterTileValue(false);
+                }
+
+                if (spawnedTile.data.canSpawnObstacle)
+                {
+                    bool spawnObstacle = Random.value <= obstacleChance;
+                    if (spawnObstacle)
+                    {
+                        //Handle the Spawning Obstacle functionality.
+                        //Debug.Log("Spawned Obstacle on " + spawnedTile.gameObject.name);
+
+                        //Debug Delete Later
+                        //spawnedTile.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+                        spawnedTile.data.SetOccupied(Tile.ObstacleType.Resource);
+                        SpawnObstacle(spawnedTile.transform.position.x, spawnedTile.transform.position.z);
+                    }
+                }
             }
         }
     }
@@ -40,9 +74,38 @@ public class GameManager : MonoBehaviour
     {
         //This will spawn the tile.
         GameObject tempTile = Instantiate(tilePrefab);
-        tempTile.transform.position = new Vector3(xPos,0f, zPos);
+        tempTile.transform.position = new Vector3(xPos, 0f, zPos);
         tempTile.transform.SetParent(tilesContainer);
+
+        tempTile.name = "Tile " + xPos + " - " + zPos;
+        //Check if the tile is able to hold an Obstacle.
+
+        //TODO: Make this to not get a Component.
         return tempTile.GetComponent<TileObject>();
     }
 
+    /// <summary>
+    /// Will spawn a Resources directly in the CoOrdinates.
+    /// </summary>
+    /// <param name="xPos">X position of the Obstacle</param>
+    /// <param name="zPos">Z position of the Obstacle</param>
+    public void SpawnObstacle(float xPos, float zPos)
+    {
+        //It has the 50% chance of spawning a Wood Obstacle.
+        bool isWood = Random.value <= 0.5f;
+
+        GameObject spawnedObstacle = null;
+
+        //check whether we spawn a Wood Obstacle or a Stone Obstacle
+        if (isWood)
+        {
+            spawnedObstacle = Instantiate(woodPrefab);
+        }
+        else
+        {
+            spawnedObstacle = Instantiate(rockPrefab);
+        }
+        spawnedObstacle.transform.position = new Vector3(xPos, tileEndHeight, zPos);
+
+    }
 }
