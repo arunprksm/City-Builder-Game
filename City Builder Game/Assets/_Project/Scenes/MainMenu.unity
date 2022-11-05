@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 161201097}
   - component: {fileID: 161201096}
   m_Layer: 5
-  m_Name: Current Gems Text (TMP)
+  m_Name: Current Premium Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 209010441}
   - component: {fileID: 209010440}
   m_Layer: 5
-  m_Name: Max Gems Text (TMP)
+  m_Name: Max Premium Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -658,7 +658,7 @@ GameObject:
   - component: {fileID: 300213708}
   - component: {fileID: 300213707}
   m_Layer: 5
-  m_Name: Max Coins Text (TMP)
+  m_Name: Max Standard Currency Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2158,7 +2158,7 @@ GameObject:
   - component: {fileID: 1658395927}
   - component: {fileID: 1658395926}
   m_Layer: 5
-  m_Name: Current Coins Text (TMP)
+  m_Name: Current Standard Currency Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3010,12 +3010,13 @@ GameObject:
   - component: {fileID: 1959984784}
   - component: {fileID: 1959984786}
   - component: {fileID: 1959984787}
+  - component: {fileID: 1959984788}
   m_Layer: 0
   m_Name: _Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1959984784
 MonoBehaviour:
@@ -3088,11 +3089,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6278b547e1b32f945892350613f2025a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxWood: 0
-  maxStone: 0
-  maxPremiumC: 0
-  maxStandardC: 0
+  maxWood: 200
+  maxStone: 200
+  maxPremiumC: 500
+  maxStandardC: 500
   debugBool: 0
+--- !u!114 &1959984788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959984783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aab2d8cd3cad7c429285cc174b80db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wood_UI:
+    slider: {fileID: 110136972}
+    maxUI: {fileID: 583103726}
+    currentUI: {fileID: 1672602097}
+  stone_UI:
+    slider: {fileID: 1113715525}
+    maxUI: {fileID: 1866429104}
+    currentUI: {fileID: 1472192450}
+  standardC_UI:
+    slider: {fileID: 1671575098}
+    maxUI: {fileID: 300213707}
+    currentUI: {fileID: 1658395926}
+  premiumC_UI:
+    slider: {fileID: 1630039764}
+    maxUI: {fileID: 209010440}
+    currentUI: {fileID: 161201096}
 --- !u!1 &1969029831
 GameObject:
   m_ObjectHideFlags: 0
