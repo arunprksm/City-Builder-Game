@@ -175,16 +175,13 @@ public class GameManager : SingletonGenerics<GameManager>
     /// 
     public void SpawnBuilding(BuildingObject building, TileObject tile)
     {
-        if (tile.tileData.IsOccupied)
-        {
-            Debug.Log("Cant place Object");
-            return;
-        }
         tile.tileData.SetOccupied(Tile.ObstacleType.Building);
         GameObject spawnedBuilding = Instantiate(building.gameObject);
         Vector3 pos = new Vector3(tile.xPos, tileEndHeight, tile.zPos);
         spawnedBuilding.transform.position = pos;
     }
+    #endregion
+}
     //public void SpawnBuilding(BuildingObject building, TileObject tile)
     //{
     //    if (tile.tileData.IsOccupied && tile.tileData.obstacleType == Tile.ObstacleType.Building)
@@ -204,5 +201,3 @@ public class GameManager : SingletonGenerics<GameManager>
     //        spawnedBuilding.transform.position = pos;
     //    }
     //}
-    #endregion
-}
