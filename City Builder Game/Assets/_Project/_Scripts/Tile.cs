@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,15 +6,18 @@ using UnityEngine;
 [System.Serializable]
 public class Tile
 {
+    #region Variables
     //Building Reference for that each tile will have for each Building.
     public Building buildingRef;
-
-
+    
     //Type of Obstacle occupied on the Tile.
     public ObstacleType obstacleType;
 
     private bool isStarterTile = true;
+    #endregion
 
+
+    #region ObstacleType is being ocupied
     //The Stuff that Tile is being ocupied by.
     public enum ObstacleType
     {
@@ -21,6 +25,7 @@ public class Tile
         Resource,
         Building
     }
+    #endregion
     #region Methods
     public void SetOccupied(ObstacleType t) => obstacleType = t;
 

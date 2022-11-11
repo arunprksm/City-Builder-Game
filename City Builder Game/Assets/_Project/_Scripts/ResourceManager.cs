@@ -3,8 +3,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UIManager;
 
-public class ResourceManager : MonoBehaviour
+public class ResourceManager : SingletonGenerics<ResourceManager>
 {
+
+    #region Variables
     [Header("Resources")]
     [Space(8)]
 
@@ -26,8 +28,7 @@ public class ResourceManager : MonoBehaviour
 
     internal UIManager uIManager;
 
-    private static ResourceManager instance;
-    public static ResourceManager Instance { get { return instance; } }
+    #endregion
 
     #region Encapsulated Values
     public int Wood { get => wood; set => wood = value; }
@@ -36,23 +37,15 @@ public class ResourceManager : MonoBehaviour
     public int StandardC { get => standardC; set => standardC = value; }
     #endregion
     public bool debugBool = false;
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
-    }
 
+    #region Start()
     private void Start()
     {
         uIManager = UIManager.Instance;
     }
+    #endregion
 
+    #region Update()
     private void Update()
     {
         if (debugBool)
@@ -61,16 +54,7 @@ public class ResourceManager : MonoBehaviour
             debugBool = false;
         }
     }
-
-    public int GetWood()
-    {
-        return wood;
-    }
-
-    public int GetStone()
-    {
-        return stone;
-    }
+    #endregion
 
     // not working
     ///// <summary>
@@ -94,7 +78,7 @@ public class ResourceManager : MonoBehaviour
     //    return false;
     //}
 
-
+    #region AddResources
     // working
     /// <summary>
     /// Adds more Wood to the Inventory.
@@ -166,15 +150,9 @@ public class ResourceManager : MonoBehaviour
         return false;
 
     }
+    #endregion
 
-    //void OnDestroy()
-    //{
-    //    if (this == instance)
-    //    {
-    //        instance = null;
-    //    }
-    //}
-
+    #region PrintCurrentResources()
     private void PrintCurrentResources()
     {
         Debug.Log("Wood " + Wood);
@@ -182,4 +160,13 @@ public class ResourceManager : MonoBehaviour
         Debug.Log("Premium " + PremiumC);
         Debug.Log("Standard " + StandardC);
     }
+    #endregion
 }
+
+//void OnDestroy()
+//{
+//    if (this == instance)
+//    {
+//        instance = null;
+//    }
+//}

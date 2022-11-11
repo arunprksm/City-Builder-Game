@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class ObstacleObject : MonoBehaviour
 {
+    #region Variables
     public ObstacleType obstacleType;
     public int resourceAmount = 10;
 
+    private TileObject refTile;
+
     private ResourceManager resourceManager;
     private UIManager uIManager;
+    #endregion
 
+    #region Start()
     private void Start()
     {
         uIManager = UIManager.Instance;
         resourceManager = ResourceManager.Instance;
     }
+    #endregion
+
+    #region OnMouseDown()
     /// <summary>
     /// This is a Method that it is called whenEver the item has been clicked or tapped.
     /// Works on Mobile or PC.
@@ -40,13 +48,28 @@ public class ObstacleObject : MonoBehaviour
                 //usedResource = resourceManager.AddResource(resourceManager.uIManager.stone_UI, resourceManager.Stone, resourceManager.maxStone, resourceAmount);
                 break;
         }
-        if (usedResource) Destroy(gameObject);
+        if (usedResource)
+        {
+            refTile.tileData.CleanTile();
+            Destroy(gameObject);
+        }
         else Debug.Log("Could not Destroy cause Inventory is Full");
     }
+    #endregion
 
+    #region SetTileReference()
+    public void SetTileReference(TileObject tObj)
+    {
+        refTile = tObj;
+    }
+    #endregion
+
+
+    #region enum ObstacleType
     public enum ObstacleType
     {
         Wood,
         Rock
     }
+    #endregion
 }

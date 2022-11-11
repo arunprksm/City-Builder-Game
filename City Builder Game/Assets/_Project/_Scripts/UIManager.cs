@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIManager : MonoBehaviour
+public class UIManager : SingletonGenerics<UIManager>
 {
+    #region Variables
     [Header("References")]
     [Space(8)]
 
@@ -15,27 +16,17 @@ public class UIManager : MonoBehaviour
     public StandardUIReference standardC_UI;
     public StandardUIReference premiumC_UI;
     ResourceManager rm;
+    #endregion
 
-    private static UIManager instance;
-    public static UIManager Instance { get { return instance; } }
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
-    }
-
+    #region Start()
     private void Start()
     {
         rm = ResourceManager.Instance;
         UpdateAll();
     }
+    #endregion
 
+    #region UpdateUIReference()
     /// <summary>
     /// Updates the UIRef Value
     /// </summary>
@@ -52,7 +43,9 @@ public class UIManager : MonoBehaviour
         uIRef.slider.maxValue = maxValue;
         uIRef.slider.value = currentValue;
     }
+    #endregion
 
+    #region UpdateAll()
     private void UpdateAll()
     {
         UpdateUIReference(wood_UI, rm.Wood, rm.maxWood);
@@ -60,8 +53,10 @@ public class UIManager : MonoBehaviour
         UpdateUIReference(premiumC_UI, rm.PremiumC, rm.maxPremiumC);
         UpdateUIReference(standardC_UI, rm.StandardC, rm.maxStandardC);
     }
+    #endregion
 
 
+    #region StandardUIReference Serializable class
     //Main class for setting up UI Containers.
     [System.Serializable]
     public class StandardUIReference
@@ -70,4 +65,5 @@ public class UIManager : MonoBehaviour
         public TextMeshProUGUI maxUI;
         public TextMeshProUGUI currentUI;
     }
+    #endregion
 }
