@@ -16,6 +16,7 @@ public class GameManager : SingletonGenerics<GameManager>
     public float tileEndHeight = 1;
 
     [Space(8)]
+    //This is the Grid that directly stores the all of the information.
     public TileObject[,] tileGrid = new TileObject[0, 0];
     [Header("Resources")]
     [Space(8)]
@@ -173,16 +174,35 @@ public class GameManager : SingletonGenerics<GameManager>
     /// <param name="building">Building to Place</param>
     /// <param name="tile">Tile to place the building</param>
     /// 
-    public void SpawnBuilding(BuildingObject building, TileObject tile)
+    public void SpawnBuilding(BuildingObject building, List<TileObject> tiles)
     {
-        tile.tileData.SetOccupied(Tile.ObstacleType.Building);
+        float sumX = 0;
+        float sumZ = 0;
+
         GameObject spawnedBuilding = Instantiate(building.gameObject);
-        Vector3 pos = new Vector3(tile.xPos, tileEndHeight, tile.zPos);
+        //old position
+        //Vector3 pos = new Vector3(tile.xPos, tileEndHeight, tile.zPos);
+
+        for (int i = 0; i < tiles.Count; i++)
+        {
+
+            //sum value of x positions of all tiles.
+            //sum value of z positions of all tiles.
+            sumX += tiles[i].xPos;
+            sumZ += tiles[i].zPos;
+
+            tiles[i].tileData.SetOccupied(Tile.ObstacleType.Building);
+            Debug.Log("Placed Building in " + tiles[i].xPos + " - " + tiles[i].zPos);
+        }
+
+        //Sets the correct position.
+        Vector3 pos = new Vector3((sumX / tiles.Count), building.buildingData.yPadding, (sumZ / tiles.Count));
         spawnedBuilding.transform.position = pos;
     }
     #endregion
 }
-    //public void SpawnBuilding(BuildingObject building, TileObject tile)
+
+//public void SpawnBuilding(BuildingObject building, TileObject tile)
     //{
     //    if (tile.tileData.IsOccupied && tile.tileData.obstacleType == Tile.ObstacleType.Building)
     //    {

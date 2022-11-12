@@ -17,6 +17,9 @@ public class Building
 
     //visual of the building.
     public GameObject buildingModel;
+
+    //small padding in case the building is clipping through the floor.
+    public float yPadding = 0;
     //Type of Functionality of the Building.
     public ResourceType resourceType = ResourceType.None;
     #endregion

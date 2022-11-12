@@ -24,8 +24,39 @@ public class TileObject : MonoBehaviour
         {
             if (GameManager.Instance.buildingToPlace != null)
             {
-                GameManager.Instance.SpawnBuilding(GameManager.Instance.buildingToPlace, this);
-                tileData.SetOccupied(Tile.ObstacleType.Building);
+                List<TileObject> iteratedTiles = new List<TileObject>();
+                //flag for checking if we are able to build in here.
+                bool canPlaceBuildingHere = true;
+
+                //Checking adjacent tiles.
+                for (int x = xPos; x < xPos + GameManager.Instance.buildingToPlace.buildingData.Width; x++)
+                {
+                    if (canPlaceBuildingHere)
+                    {
+                        for (int z = zPos; z < zPos + GameManager.Instance.buildingToPlace.buildingData.Length; z++)
+                        {
+                            iteratedTiles.Add(GameManager.Instance.tileGrid[x, z]);
+                            if (GameManager.Instance.tileGrid[x, z].tileData.IsOccupied)
+                            {
+                                canPlaceBuildingHere = false;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //canPlaceBuildingHere &= GameManager.Instance.tileGrid[x, z].tileData.IsOccupied;
+                        break;
+                    }
+                }
+                if (canPlaceBuildingHere)
+                {
+                    GameManager.Instance.SpawnBuilding(GameManager.Instance.buildingToPlace, iteratedTiles);
+                }
+                else
+                {
+                    Debug.Log("Could Not place Building");
+                }
             }
             else
             {

@@ -50,6 +50,7 @@ MonoBehaviour:
     Width: 1
     Length: 1
     buildingModel: {fileID: 1706520874872879345}
+    yPadding: 1
     resourceType: 0
 --- !u!1001 &1706520876080505483
 PrefabInstance:
