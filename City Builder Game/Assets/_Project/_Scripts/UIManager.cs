@@ -49,7 +49,7 @@ public class UIManager : SingletonGenerics<UIManager>
     private void UpdateAll()
     {
         UpdateUIReference(wood_UI, rm.Wood, rm.maxWood);
-        UpdateUIReference(stone_UI, rm.Stone, rm.maxStone);
+        UpdateUIReference(stone_UI, rm.Rock, rm.maxRock);
         UpdateUIReference(premiumC_UI, rm.PremiumC, rm.maxPremiumC);
         UpdateUIReference(standardC_UI, rm.StandardC, rm.maxStandardC);
     }

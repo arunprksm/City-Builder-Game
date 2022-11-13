@@ -15,7 +15,7 @@ public class ResourceManager : SingletonGenerics<ResourceManager>
     private int wood = 0;
 
     //sets the max amount of stone
-    public int maxStone;
+    public int maxRock;
     private int stone = 0;
 
     //sets the max amount of premiumCurrency
@@ -28,15 +28,16 @@ public class ResourceManager : SingletonGenerics<ResourceManager>
 
     internal UIManager uIManager;
 
+    public bool debugBool = false;
     #endregion
 
     #region Encapsulated Values
     public int Wood { get => wood; set => wood = value; }
-    public int Stone { get => stone; set => stone = value; }
+    public int Rock { get => stone; set => stone = value; }
     public int PremiumC { get => premiumC; set => premiumC = value; }
     public int StandardC { get => standardC; set => standardC = value; }
     #endregion
-    public bool debugBool = false;
+
 
     #region Start()
     private void Start()
@@ -80,6 +81,8 @@ public class ResourceManager : SingletonGenerics<ResourceManager>
 
     #region AddResources
     // working
+
+    #region Wood
     /// <summary>
     /// Adds more Wood to the Inventory.
     /// </summary>
@@ -97,23 +100,39 @@ public class ResourceManager : SingletonGenerics<ResourceManager>
         return false;
     }
 
+    public void IncreaseMaxWood(int amount)
+    {
+        maxWood += amount;
+        uIManager.UpdateUIReference(uIManager.wood_UI, Wood, maxWood);
+    }
+
+    #endregion
+
+    #region Rock
     /// <summary>
     /// Adds more Stone to the Inventory.
     /// </summary>
     /// <param name="amount">Amount to add directly to our existing Stone</param>
     public bool AddStone(int amount)
     {
-        if ((Stone + amount) <= maxStone)
+        if ((Rock + amount) <= maxRock)
         {
-            Stone += amount;
+            Rock += amount;
             //TODO: Update the stone UI to show the correct amount of stone.
             //Updates the corresponding UI.
-            uIManager.UpdateUIReference(uIManager.stone_UI, Stone, maxStone);
+            uIManager.UpdateUIReference(uIManager.stone_UI, Rock, maxRock);
             return true;
         }
         return false;
     }
+    public void IncreaseMaxRock(int amount)
+    {
+        maxRock += amount;
+        uIManager.UpdateUIReference(uIManager.stone_UI, Rock, maxRock);
+    }
+    #endregion
 
+    #region Premium
     /// <summary>
     /// Adds more premiumC to the Inventory.
     /// </summary>
@@ -130,8 +149,11 @@ public class ResourceManager : SingletonGenerics<ResourceManager>
             return true;
         }
         return false;
-
     }
+
+    #endregion
+
+    #region Standard
     /// <summary>
     /// Adds more standardC to the Inventory.
     /// </summary>
@@ -152,11 +174,13 @@ public class ResourceManager : SingletonGenerics<ResourceManager>
     }
     #endregion
 
+    #endregion
+
     #region PrintCurrentResources()
     private void PrintCurrentResources()
     {
         Debug.Log("Wood " + Wood);
-        Debug.Log("Stone " + Stone);
+        Debug.Log("Stone " + Rock);
         Debug.Log("Premium " + PremiumC);
         Debug.Log("Standard " + StandardC);
     }

@@ -3030,13 +3030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46a820c25c59de4cb3efe6a2e74f6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingsDataBase:
-  - BuildingID: 1
-    Width: 2
-    Length: 2
-    buildingModel: {fileID: 7397559046382739430, guid: 1566a2951a805e344a754c29602a86f5, type: 3}
-    yPadding: 0.2
-    resourceType: 0
+  buildingsDataBase: []
 --- !u!4 &1959984785
 Transform:
   m_ObjectHideFlags: 0
@@ -3090,7 +3084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxWood: 200
-  maxStone: 200
+  maxRock: 200
   maxPremiumC: 500
   maxStandardC: 500
   debugBool: 0

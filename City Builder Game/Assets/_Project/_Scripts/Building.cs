@@ -22,14 +22,32 @@ public class Building
     public float yPadding = 0;
     //Type of Functionality of the Building.
     public ResourceType resourceType = ResourceType.None;
+
+    public StorageType storageType = StorageType.None;
+
     #endregion
+
+
+
 
     #region ResourceType enum
     public enum ResourceType
     {
         None,
         Standard,
-        Premium
+        Premium,
+        Storage
     }
+    #endregion
+
+
+    #region StorageType enum
+    public enum StorageType
+    {
+        None,
+        Wood,
+        Rock
+    }
+
     #endregion
 }

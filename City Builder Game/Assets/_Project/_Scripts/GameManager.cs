@@ -192,7 +192,7 @@ public class GameManager : SingletonGenerics<GameManager>
             sumZ += tiles[i].zPos;
 
             tiles[i].tileData.SetOccupied(Tile.ObstacleType.Building);
-            Debug.Log("Placed Building in " + tiles[i].xPos + " - " + tiles[i].zPos);
+            //Debug.Log("Placed Building in " + tiles[i].xPos + " - " + tiles[i].zPos);
         }
 
         //Sets the correct position.
