@@ -52,12 +52,12 @@ public class BuildingObject : MonoBehaviour
             if (buildingResource < buildingResourceLimit)
             {
                 buildingResource += resourceGenerationSpeed * Time.deltaTime;
-                UIUpdate(buildingResource, buildingResourceLimit);
             }
             else
             {
                 buildingResource = buildingResourceLimit;
             }
+            UIUpdate(buildingResource, buildingResourceLimit);
             yield return null;
         }
     }
