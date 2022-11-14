@@ -27,9 +27,6 @@ public class Building
 
     #endregion
 
-
-
-
     #region ResourceType enum
     public enum ResourceType
     {
@@ -39,7 +36,6 @@ public class Building
         Storage
     }
     #endregion
-
 
     #region StorageType enum
     public enum StorageType

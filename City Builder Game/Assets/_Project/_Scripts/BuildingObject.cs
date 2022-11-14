@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingObject : MonoBehaviour
 {
@@ -19,6 +20,12 @@ public class BuildingObject : MonoBehaviour
     //Speed that the resource is Generated.
     public float resourceGenerationSpeed = 5f;
 
+    [Header("UI")]
+    [Space(8)]
+
+    public Canvas canvasGO;
+    public Slider progressSlider;
+
 
     Coroutine buildingBehaviour;
 
@@ -32,6 +39,7 @@ public class BuildingObject : MonoBehaviour
 
         if (buildingData.resourceType == Building.ResourceType.Storage)
         {
+            canvasGO.gameObject.SetActive(false);
             IncreaseMaxStorage();
         }
     }
@@ -44,6 +52,7 @@ public class BuildingObject : MonoBehaviour
             if (buildingResource < buildingResourceLimit)
             {
                 buildingResource += resourceGenerationSpeed * Time.deltaTime;
+                UIUpdate(buildingResource, buildingResourceLimit);
             }
             else
             {
@@ -87,6 +96,12 @@ public class BuildingObject : MonoBehaviour
                 ResourceManager.Instance.IncreaseMaxRock((int) buildingResource);
                 break;
         }
+        //UIUpdate(buildingResource, buildingResourceLimit);
     }
 
+    public void UIUpdate(float curVal, float maxVal)
+    {
+        progressSlider.value = curVal;
+        progressSlider.maxValue = maxVal;
+    }
 }
