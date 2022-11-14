@@ -539,8 +539,9 @@ MonoBehaviour:
     Length: 3
     buildingModel: {fileID: 7397559046382739430}
     yPadding: 1
-    resourceType: 2
-    storageType: 0
+    resourceType: 3
+    storageType: 2
+    refOfBuilding: {fileID: 2910485931835526685}
   buildingResource: 0
   buildingResourceLimit: 100
   resourceGenerationSpeed: 5

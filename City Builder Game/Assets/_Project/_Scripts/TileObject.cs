@@ -28,27 +28,37 @@ public class TileObject : MonoBehaviour
                 //flag for checking if we are able to build in here.
                 bool canPlaceBuildingHere = true;
 
-                //Checking adjacent tiles.
-                for (int x = xPos; x < xPos + GameManager.Instance.buildingToPlace.buildingData.Width; x++)
+                try
                 {
-                    if (canPlaceBuildingHere)
+                    //Checking adjacent tiles.
+                    for (int x = xPos; x < xPos + GameManager.Instance.buildingToPlace.buildingData.Width; x++)
                     {
-                        for (int z = zPos; z < zPos + GameManager.Instance.buildingToPlace.buildingData.Length; z++)
+                        if (canPlaceBuildingHere)
                         {
-                            iteratedTiles.Add(GameManager.Instance.tileGrid[x, z]);
-                            if (GameManager.Instance.tileGrid[x, z].tileData.IsOccupied)
+                            for (int z = zPos; z < zPos + GameManager.Instance.buildingToPlace.buildingData.Length; z++)
                             {
-                                canPlaceBuildingHere = false;
-                                break;
+                                iteratedTiles.Add(GameManager.Instance.tileGrid[x, z]);
+                                if (GameManager.Instance.tileGrid[x, z].tileData.IsOccupied)
+                                {
+                                    canPlaceBuildingHere = false;
+                                    break;
+                                }
                             }
                         }
-                    }
-                    else
-                    {
-                        //canPlaceBuildingHere &= GameManager.Instance.tileGrid[x, z].tileData.IsOccupied;
-                        break;
+                        else
+                        {
+                            //canPlaceBuildingHere &= GameManager.Instance.tileGrid[x, z].tileData.IsOccupied;
+                            break;
+                        }
                     }
                 }
+                catch (System.IndexOutOfRangeException)
+                {
+                    Debug.Log("There were No Tiles");
+                    return;
+                }
+
+
                 if (canPlaceBuildingHere)
                 {
                     GameManager.Instance.SpawnBuilding(GameManager.Instance.buildingToPlace, iteratedTiles);

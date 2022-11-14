@@ -8,7 +8,7 @@ public class Tile
 {
     #region Variables
     //Building Reference for that each tile will have for each Building.
-    public Building buildingRef;
+    public BuildingObject buildingRef;
     
     //Type of Obstacle occupied on the Tile.
     public ObstacleType obstacleType;
@@ -29,7 +29,7 @@ public class Tile
     #region Methods
     public void SetOccupied(ObstacleType t) => obstacleType = t;
 
-    public void SetOccupied(ObstacleType t, Building b)
+    public void SetOccupied(ObstacleType t, BuildingObject b)
     {
         obstacleType = t;
         buildingRef = b;

@@ -303,11 +303,12 @@ MonoBehaviour:
     Length: 2
     buildingModel: {fileID: 4904289625104636874}
     yPadding: 1
-    resourceType: 3
-    storageType: 2
-  buildingResource: 100
-  buildingResourceLimit: 0
-  resourceGenerationSpeed: 0
+    resourceType: 2
+    storageType: 0
+    refOfBuilding: {fileID: 7965056319639847583}
+  buildingResource: 0
+  buildingResourceLimit: 100
+  resourceGenerationSpeed: 5
   canvasGO: {fileID: 6498490819126306566}
   progressSlider: {fileID: 5176966205199356182}
 --- !u!65 &-4107966624336626231

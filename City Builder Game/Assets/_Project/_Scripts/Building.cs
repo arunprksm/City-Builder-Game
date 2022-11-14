@@ -25,6 +25,9 @@ public class Building
 
     public StorageType storageType = StorageType.None;
 
+    //[HideInInspector]
+    public BuildingObject refOfBuilding;
+
     #endregion
 
     #region ResourceType enum

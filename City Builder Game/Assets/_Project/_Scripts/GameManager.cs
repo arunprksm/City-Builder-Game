@@ -191,7 +191,7 @@ public class GameManager : SingletonGenerics<GameManager>
             sumX += tiles[i].xPos;
             sumZ += tiles[i].zPos;
 
-            tiles[i].tileData.SetOccupied(Tile.ObstacleType.Building);
+            tiles[i].tileData.SetOccupied(Tile.ObstacleType.Building, spawnedBuilding.GetComponent<BuildingObject>());
             //Debug.Log("Placed Building in " + tiles[i].xPos + " - " + tiles[i].zPos);
         }
 
@@ -200,24 +200,38 @@ public class GameManager : SingletonGenerics<GameManager>
         spawnedBuilding.transform.position = pos;
     }
     #endregion
+
+    #region SelectBuilding()
+    public void SelectBuilding(int id)
+    {
+        for (int i = 0; i < BuildingsDataBase.Instance.buildingsDataBase.Count; i++)
+        {
+            if (BuildingsDataBase.Instance.buildingsDataBase[i].BuildingID == id)
+            {
+                buildingToPlace = BuildingsDataBase.Instance.buildingsDataBase[i].refOfBuilding;
+            }
+        }
+    }
+
+    #endregion
 }
 
 //public void SpawnBuilding(BuildingObject building, TileObject tile)
-    //{
-    //    if (tile.tileData.IsOccupied && tile.tileData.obstacleType == Tile.ObstacleType.Building)
-    //    {
-    //        tileEndHeight++;
-    //        tile.tileData.SetOccupied(Tile.ObstacleType.Building);
-    //        GameObject spawnedBuilding = Instantiate(building.gameObject);
-    //        Vector3 pos = new Vector3(tile.xPos, tileEndHeight, tile.zPos);
-    //        spawnedBuilding.transform.position = pos;
-    //    }
-    //    else
-    //    {
-    //        tileEndHeight = 1;
-    //        tile.tileData.SetOccupied(Tile.ObstacleType.Building);
-    //        GameObject spawnedBuilding = Instantiate(building.gameObject);
-    //        Vector3 pos = new Vector3(tile.xPos, tileEndHeight, tile.zPos);
-    //        spawnedBuilding.transform.position = pos;
-    //    }
-    //}
+//{
+//    if (tile.tileData.IsOccupied && tile.tileData.obstacleType == Tile.ObstacleType.Building)
+//    {
+//        tileEndHeight++;
+//        tile.tileData.SetOccupied(Tile.ObstacleType.Building);
+//        GameObject spawnedBuilding = Instantiate(building.gameObject);
+//        Vector3 pos = new Vector3(tile.xPos, tileEndHeight, tile.zPos);
+//        spawnedBuilding.transform.position = pos;
+//    }
+//    else
+//    {
+//        tileEndHeight = 1;
+//        tile.tileData.SetOccupied(Tile.ObstacleType.Building);
+//        GameObject spawnedBuilding = Instantiate(building.gameObject);
+//        Vector3 pos = new Vector3(tile.xPos, tileEndHeight, tile.zPos);
+//        spawnedBuilding.transform.position = pos;
+//    }
+//}

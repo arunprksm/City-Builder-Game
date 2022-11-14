@@ -28,7 +28,6 @@ public class BuildingObject : MonoBehaviour
 
 
     Coroutine buildingBehaviour;
-
     private void Start()
     {
 
